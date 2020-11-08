@@ -11,12 +11,6 @@
     scroll-behavior: smooth;
 }
 
-.fade-in {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: 0.5s all ease-in-out;
-}
-
 .heading {
     text-align: center;
     padding: 10px;
@@ -24,27 +18,6 @@
     letter-spacing: 8px;
     font-weight: 400;
 }
-
-.text-title {
-    font-size: 30px;
-    text-align: center;
-    padding: 60px;
-    margin: 40px;
-}
-.text-detail {
-    font-size: 30px;
-    padding: 20px;
-    margin: 20px;
-}
-.text-appear {
-    opacity: 1;
-    transform: translateY(0px);
-}
-
-a:link { text-decoration: underline; color: black; }
-a:visited { text-decoration: none; color: black; }
-a:hover { text-decoration: underline; color: #808080; }
-a:active { text-decoration: none; color: black; }
 
 .header {
     margin: 80px;
