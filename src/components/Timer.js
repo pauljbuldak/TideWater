@@ -1,5 +1,18 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+/*
+import AlertMUITemplate from 'react-alert-template-mui';
+import { useAlert } from 'react-alert';
+
+const TimerAlert = () => {
+    const alert = useAlert();
+    return (
+        alert.show('Please submit your quiz', {
+            title: 'Time is up!'
+        })
+    );
+}
+*/
 
 class Timer extends Component {
     constructor(props) {
@@ -25,6 +38,7 @@ class Timer extends Component {
         }
 
         if(this.state.minutes === 0 && this.state.seconds === 0) {
+            /* Add in the alert for the timer here */
             this.componentWillUnmount()
         }
     }

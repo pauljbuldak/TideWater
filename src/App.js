@@ -3,6 +3,7 @@ import quizQuestions from './api/quizQuestions';
 import Quiz from './components/Quiz';
 import Result from './components/Result';
 import Timer from './components/Timer';
+import axios from 'axios';
 import logo from './svg/logo.svg';
 import './App.css';
 
@@ -25,6 +26,12 @@ class App extends Component {
   }
 
   componentDidMount() {
+    axios.get('https://www.lewis.education/quiz-data-01').then(function (response) {
+        console.log(response);
+    }).catch(function (error) {
+      console.log(error);
+    })
+
     const shuffledAnswerOptions = quizQuestions.map(question =>
       this.shuffleArray(question.answers)
     );
