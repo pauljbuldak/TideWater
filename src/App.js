@@ -22,15 +22,16 @@ class App extends Component {
       minutes: 10
     };
 
-    this.handleAnswerSelected = this.handleAnswerSelected.bind(this);
+    //this.handleAnswerSelected = this.handleAnswerSelected.bind(this);
   }
 
   componentDidMount() {
-    axios.get('https://www.lewis.education/quiz-data-01').then(function (response) {
-        console.log(response);
-    }).catch(function (error) {
-      console.log(error);
-    })
+    /*
+      URLs: https://www.lewis.education/quiz-data-01
+            https://www.lewis.education/quiz-data-02
+   */ 
+   
+   this.sendGetRequest('https://www.lewis.education/quiz-data-01');
 
     const shuffledAnswerOptions = quizQuestions.map(question =>
       this.shuffleArray(question.answers)
@@ -58,13 +59,29 @@ class App extends Component {
     return array;
   }
 
-  handleAnswerSelected(event) {
-    this.setUserAnswer(event.currentTarget.value);
+  sendGetRequest = async (url) => {
+    try {
+      const res = await axios.get(url);
+      console.log(res.data);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  handleAnswerSelected = (event) => {
+    this.setState({
+      answer: event.currentTarget.value
+    });
+  }
+
+  handleNextQuestion = () => {
+    console.log("button click answer: " + this.state.answer);
+    this.setUserAnswer(this.state.answer);
 
     if (this.state.questionId < quizQuestions.length) {
-      setTimeout(() => this.setNextQuestion(), 300);
+      setTimeout(() => this.setNextQuestion(), 100);
     } else {
-      setTimeout(() => this.setResults(this.getResults()), 300);
+      setTimeout(() => this.setResults(this.getResults()), 100);
     }
   }
 
@@ -102,6 +119,7 @@ class App extends Component {
 
   setResults(result) {
     if (result.length === 1) {
+      console.log("result: " + result);
       this.setState({ result: result[0] });
     } else {
       this.setState({ result: 'Undetermined' });
@@ -133,11 +151,19 @@ class App extends Component {
     return (
       <div className="App">
         <div className="App-header">
+
           <img src={logo} className="App-logo" alt="logo" />
           <h2>TideWater Quiz</h2>
           {this.renderTimer()}
         </div>
         {this.state.result ? this.renderResult() : this.renderQuiz()}
+        <div>
+          <button 
+            onClick={this.handleNextQuestion}>
+            {this.state.questionId < quizQuestions.length ? 'Next' : 'Submit'}
+          </button>
+        </div>
+        
       </div>
     );
   }
