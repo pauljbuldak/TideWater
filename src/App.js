@@ -21,8 +21,6 @@ class App extends Component {
       result: '',
       minutes: 10
     };
-
-    //this.handleAnswerSelected = this.handleAnswerSelected.bind(this);
   }
 
   componentDidMount() {
