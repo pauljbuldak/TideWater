@@ -1,5 +1,18 @@
 var quizQuestions = [
     {
+        question: "A True or False question.",
+        answers: [
+            {
+                type: "Other",
+                content: "True"
+            },
+            {
+                type: "Other",
+                content: "False"
+            }
+        ]
+    },
+    {
         question: "What franchise would you rather play a game from?",
         answers: [
             {

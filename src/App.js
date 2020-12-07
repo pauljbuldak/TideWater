@@ -19,7 +19,8 @@ class App extends Component {
       answer: '',
       answersCount: {},
       result: '',
-      minutes: 10
+      minutes: 10,
+      timerPaused: false
     };
   }
 
@@ -58,8 +59,11 @@ class App extends Component {
   }
 
   sendGetRequest = async (url) => {
+    var config = {
+      headers: {'Access-Control-Allow-Origin': '*'}
+    };
     try {
-      const res = await axios.get(url);
+      const res = await axios.get(url, config);
       console.log(res.data);
     } catch (err) {
       console.log(err);
@@ -77,9 +81,12 @@ class App extends Component {
     this.setUserAnswer(this.state.answer);
 
     if (this.state.questionId < quizQuestions.length) {
-      setTimeout(() => this.setNextQuestion(), 100);
+      setTimeout(() => this.setNextQuestion(), 200);
     } else {
-      setTimeout(() => this.setResults(this.getResults()), 100);
+      console.log("handleNextQuestion() timerPaused before: " + this.state.timerPaused);
+      this.setState({ timerPaused: true });
+      console.log("handleNextQuestion() timerPaused after: " + this.state.timerPaused);
+      setTimeout(() => this.setResults(this.getResults()), 200);
     }
   }
 
@@ -142,26 +149,24 @@ class App extends Component {
   }
 
   renderTimer() {
-    return <Timer minutes={this.state.minutes}/>;
+    return <Timer minutes={this.state.minutes} timerPaused={this.state.timerPaused}/>;
   }
 
   render() {
     return (
       <div className="App">
         <div className="App-header">
-
           <img src={logo} className="App-logo" alt="logo" />
           <h2>TideWater Quiz</h2>
           {this.renderTimer()}
         </div>
-        {this.state.result ? this.renderResult() : this.renderQuiz()}
         <div>
-          <button 
+          {this.state.result ? this.renderResult() : this.renderQuiz()}
+          <button className={this.state.result ? "hiddenNextButton" : "nextButton"}
             onClick={this.handleNextQuestion}>
             {this.state.questionId < quizQuestions.length ? 'Next' : 'Submit'}
           </button>
         </div>
-        
       </div>
     );
   }
