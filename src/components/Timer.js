@@ -26,10 +26,10 @@ class Timer extends Component {
         }
 
         if(this.state.minutes === 0 && this.state.seconds === 0) {
+            alert('Time is up! Submit your quiz.')
             this.componentWillUnmount();
         }
 
-        console.log("tick() timerPaused: " + this.state.timerPaused);
         if(this.state.timerPaused === true) {
             this.componentWillUnmount();
         }
@@ -50,10 +50,9 @@ class Timer extends Component {
                     Time Left: {this.state.minutes} {this.state.minutes === 1 ? 'minute' : 'minutes'} {this.state.seconds} {this.state.seconds === 1 ? 'second' : 'seconds'}
                 </h3>
                 <h3>
-                    {this.state.minutes < 10 && (this.state.minutes >= 5  && this.state.seconds > 0) ? 'You have less than 10 minutes left on this quiz.' : ''}
-                    {this.state.minutes < 5 && (this.state.minutes >= 1  && this.state.seconds > 0) ? 'You have less than 5 minutes left on this quiz.' : ''}
+                    {this.state.minutes < 10 && (this.state.minutes >= 5  && this.state.seconds >= 0) ? 'You have less than 10 minutes left on this quiz.' : ''}
+                    {this.state.minutes < 5 && (this.state.minutes >= 1  && this.state.seconds >= 0) ? 'You have less than 5 minutes left on this quiz.' : ''}
                     {this.state.minutes < 1 && this.state.seconds > 0 ? 'You have less than 1 minute left. Make sure to submit your quiz.' : ''}
-                    {this.state.minutes === 0 && this.state.seconds === 0 ? alert("") : ''}
                 </h3>
             </div>
         )
