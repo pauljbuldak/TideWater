@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import Login from './components/GoogleLogin';
+import Logout from './components/GoogleLogout';
 import quizQuestions from './api/quizQuestions';
 import Quiz from './components/Quiz';
 import Result from './components/Result';
@@ -156,6 +158,14 @@ class App extends Component {
     return (
       <div className="App">
         <div className="App-header">
+          <div className="login-container">
+            <div className="login">
+              <Login />
+            </div>
+            <div className="logout">
+              <Logout />
+            </div>
+          </div>
           <img src={logo} className="App-logo" alt="logo" />
           <h2>TideWater Quiz</h2>
           {this.renderTimer()}

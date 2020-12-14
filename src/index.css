@@ -38,6 +38,27 @@ body {
   }
 }
 
+/* Login Component */
+.login-container {
+  position: absolute;
+  max-width: 200px;
+  margin: 10px;
+  left: 20px;
+  top: 20px;
+  padding: 20px;
+}
+.login {
+  position: relative;
+  margin: 4px;
+  padding: 10px;
+}
+.logout {
+  position: relative;
+  margin: 4px;
+  padding: 10px;
+}
+
+
 /* Result Component */
 .result {
   padding: 1.5rem 2.5rem;
