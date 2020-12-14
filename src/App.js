@@ -85,9 +85,7 @@ class App extends Component {
     if (this.state.questionId < quizQuestions.length) {
       setTimeout(() => this.setNextQuestion(), 200);
     } else {
-      console.log("handleNextQuestion() timerPaused before: " + this.state.timerPaused);
       this.setState({ timerPaused: true });
-      console.log("handleNextQuestion() timerPaused after: " + this.state.timerPaused);
       setTimeout(() => this.setResults(this.getResults()), 200);
     }
   }
